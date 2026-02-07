@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import ValentineQuestion from '@/components/valentine/ValentineQuestion';
-import ValentineContent from '@/components/valentine/ValentineContent';
+
+const ValentineContent = lazy(() => import('@/components/valentine/ValentineContent'));
 
 const Index = () => {
   const [accepted, setAccepted] = useState(false);
@@ -23,7 +24,9 @@ const Index = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          <ValentineContent />
+          <Suspense fallback={<div className="min-h-screen bg-background" />}>
+            <ValentineContent />
+          </Suspense>
         </motion.div>
       )}
     </AnimatePresence>

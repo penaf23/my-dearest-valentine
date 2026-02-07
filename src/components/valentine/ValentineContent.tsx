@@ -1,12 +1,13 @@
-import { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import HeroScene from './HeroScene';
 import LoveLetter from './LoveLetter';
 import GiftSelection from './GiftSelection';
 import PhotoGallery from './PhotoGallery';
 import Timeline from './Timeline';
 import InteractiveCards from './InteractiveCards';
 import MusicPlayer from './MusicPlayer';
+
+const HeroScene = lazy(() => import('./HeroScene'));
 
 const PetalsFalling = () => (
   <div className="fixed inset-0 pointer-events-none z-40 overflow-hidden">
