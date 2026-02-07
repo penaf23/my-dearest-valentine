@@ -1,13 +1,32 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import ValentineQuestion from '@/components/valentine/ValentineQuestion';
+import ValentineContent from '@/components/valentine/ValentineContent';
 
 const Index = () => {
+  const [accepted, setAccepted] = useState(false);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <AnimatePresence mode="wait">
+      {!accepted ? (
+        <motion.div
+          key="question"
+          exit={{ opacity: 0, scale: 0.9 }}
+          transition={{ duration: 0.6 }}
+        >
+          <ValentineQuestion onAccept={() => setAccepted(true)} />
+        </motion.div>
+      ) : (
+        <motion.div
+          key="content"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <ValentineContent />
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 
