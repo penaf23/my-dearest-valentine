@@ -18,7 +18,7 @@ const MusicPlayer = () => {
   return (
     <>
       {/* Add your own music file to public/music.mp3 */}
-      <audio ref={audioRef} src="/music.mp3" loop />
+      <audio ref={audioRef} src={`${import.meta.env.BASE_URL}music.mp3`} loop />
 
       <motion.button
         initial={{ opacity: 0, scale: 0 }}
